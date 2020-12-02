@@ -1,0 +1,3 @@
+index:
+    path: /{city}
+    controller: App\Controller\DefaultController::index
