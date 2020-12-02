@@ -32,6 +32,6 @@ services:
     resource: '../src/Controller/'
     tags: [ 'controller.service_arguments' ]
 
-  App\WeatherProvider\CityHandler:
+  App\WeatherProvider\Handler\CityHandler:
     arguments:
       $providers: !tagged app.weather.provider

@@ -4,12 +4,12 @@
  * @copyright (c) 2020
  */
 
-namespace App\WeatherProvider;
+namespace App\WeatherProvider\Handler;
 
 use App\Model\Weather;
 use App\WeatherProvider\Provider\WeatherProviderInterface;
 
-class CityHandler
+class CityHandler implements CityHandlerInterface
 {
     /* @var iterable|WeatherProviderInterface[] */
     private $providers;
