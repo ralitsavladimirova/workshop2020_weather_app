@@ -14,7 +14,7 @@ class CachedCityHandler implements CityHandlerInterface
 {
     private $cache;
     private $cityHandler;
-    private $expiresAfter = 60;
+    private $expiresAfter;
     
     public function __construct(CacheInterface $cache, CityHandlerInterface $cityHandler, $expiresAfter = 60)
     {
