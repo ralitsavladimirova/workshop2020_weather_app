@@ -14,11 +14,13 @@ class CachedCityHandler implements CityHandlerInterface
 {
     private $cache;
     private $cityHandler;
-
-    public function __construct(CacheInterface $cache, CityHandlerInterface $cityHandler)
+    private $expiresAfter = 60;
+    
+    public function __construct(CacheInterface $cache, CityHandlerInterface $cityHandler, $expiresAfter = 60)
     {
         $this->cache = $cache;
         $this->cityHandler = $cityHandler;
+        $this->expiresAfter = $expiresAfter;
     }
 
     public function handle(string $city): Weather
@@ -26,7 +28,7 @@ class CachedCityHandler implements CityHandlerInterface
         $cacheKey = md5($city . (new \DateTime())->format('Y-m-d'));
 
         return $this->cache->get($cacheKey, function (ItemInterface $cacheItem) use ($city) {
-            $cacheItem->expiresAfter(60);
+            $cacheItem->expiresAfter($this->expiresAfter);
 
             return $this->cityHandler->handle($city);
         });
